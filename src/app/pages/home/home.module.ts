@@ -1,26 +1,26 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home.component';
 import { CommonModule } from '@angular/common';
-import { LogoComponent } from '../../assets/logo/logo.component';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
+import { HomeComponent } from './home.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent }
 ];
 
 
 @NgModule({
-    declarations: [
-        LogoComponent,
-        HomeComponent,
-    ],
-    imports: [
-        CommonModule,
-        MatButtonModule,
-        RouterModule.forChild(routes)
-    ],
-    exports: [RouterModule]
-  })
-  export class HomeModule { }
-  
+  declarations: [
+
+    HomeComponent,
+  ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatButtonModule,
+    RouterModule.forChild(routes)
+  ],
+  exports: [RouterModule]
+})
+export class HomeModule { }
