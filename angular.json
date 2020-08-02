@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "coffee-build"
+    }
+  },
+  "defaultProject": "coffee-build",
+  "cli": {
+    "analytics": false
+  }
 }

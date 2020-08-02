@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { CommonModule } from '@angular/common';
-import { LogoComponent } from '../assets/logo/logo.component';
+import { LogoComponent } from '../../assets/logo/logo.component';
 import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
@@ -18,7 +18,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         MatButtonModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forChild(routes)
     ],
     exports: [RouterModule]
   })
