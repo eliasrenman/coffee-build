@@ -1,8 +1,10 @@
-<mat-list>
-  <div mat-subheader>Folders</div>
+<h2>Subscribed devices</h2>
+<mat-list dense>
   <mat-list-item>
-    <mat-icon mat-list-icon>folder</mat-icon>
-    <div mat-line>{{folder.name}}</div>
-    <div mat-line> {{folder.updated | date}} </div>
+    <button mat-icon-button color="warn">
+      <mat-icon mat-list-icon>delete</mat-icon>
+    </button>
+    <div mat-line>{{"Device.name"}}</div>
+    <div mat-line> {{"1596297514000" | date}} </div>
   </mat-list-item>
 </mat-list>
