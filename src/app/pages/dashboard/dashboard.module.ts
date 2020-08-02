@@ -9,6 +9,9 @@ import { SharedModule } from '../../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UserMenuComponent } from './toolbar/user-menu/user-menu.component';
+import { UniqueEndpointComponent } from './unique-endpoint/unique-endpoint.component';
+import { SubscribedDevicesComponent } from './subscribed-devices/subscribed-devices.component';
+import { UsageGuideComponent } from './usage-guide/usage-guide.component';
 
 
 const routes: Routes = [
@@ -17,7 +20,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [DashboardComponent, ToolbarComponent, UserMenuComponent],
+  declarations: [DashboardComponent, ToolbarComponent, UserMenuComponent, UniqueEndpointComponent, SubscribedDevicesComponent, UsageGuideComponent],
   imports: [
     CommonModule,
     MatIconModule,
