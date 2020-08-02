@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from 'src/app/shared/services/auth/user.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-menu',

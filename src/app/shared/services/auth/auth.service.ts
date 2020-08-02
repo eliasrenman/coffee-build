@@ -1,4 +1,3 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, throwError } from 'rxjs';
@@ -20,7 +19,7 @@ export class AuthService {
   private tokenExpirationTimer: any;
   private logoutRedirectRoute = '/';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private router: Router) { }
 
   
   logout() {
