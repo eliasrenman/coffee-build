@@ -1,1 +1,15 @@
-<p>usage-guide works!</p>
+<h2>Usage</h2>
+<p>Simply run the following command after your build task by adding a && and pasting the command written below.</p>
+
+<div>
+  <mat-tab-group>
+    <mat-tab label="Windows">
+      powershell -Command "(new-object net.webclient).DownloadString('https://example.com/notify/rZ4pPgYxegCarB3eXbg')"
+    </mat-tab>
+    <mat-tab label="Linux & Mac OS">
+      <div>
+        wget https://example.com/notify/rZ4pPgYxegCarB3eXbg
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

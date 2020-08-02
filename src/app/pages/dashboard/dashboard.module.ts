@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
@@ -38,6 +39,7 @@ const routes: Routes = [
     MatDividerModule,
     MatDialogModule,
     MatListModule,
+    MatTabsModule,
     SharedModule,
     RouterModule.forChild(routes)
   ],
