@@ -4,12 +4,14 @@
 <div>
   <mat-tab-group>
     <mat-tab label="Windows">
-      powershell -Command "(new-object net.webclient).DownloadString('https://example.com/notify/rZ4pPgYxegCarB3eXbg')"
+      <app-code-example>
+        powershell -Command "(new-object net.webclient).DownloadString('https://example.com/notify/rZ4pPgYxegCarB3eXbg')"
+      </app-code-example>
     </mat-tab>
     <mat-tab label="Linux & Mac OS">
-      <div>
+      <app-code-example>
         wget https://example.com/notify/rZ4pPgYxegCarB3eXbg
-      </div>
+      </app-code-example>
     </mat-tab>
   </mat-tab-group>
 </div>

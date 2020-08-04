@@ -15,6 +15,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UserMenuComponent } from './toolbar/user-menu/user-menu.component';
 import { UniqueEndpointComponent } from './unique-endpoint/unique-endpoint.component';
 import { UsageGuideComponent } from './usage-guide/usage-guide.component';
+import { CodeExampleComponent } from './usage-guide/code-example/code-example.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
     UserMenuComponent,
     UniqueEndpointComponent,
     SubscribedDevicesComponent,
-    UsageGuideComponent
+    UsageGuideComponent,
+    CodeExampleComponent
   ],
   imports: [
     CommonModule,

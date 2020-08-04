@@ -21,7 +21,6 @@
 // hue. Available color palettes: https://material.io/design/color/
 $coffee-build-primary: mat-palette($mat-brown);
 $coffee-build-accent: mat-palette($mat-blue, A200, A100, A400);
-
 // The warn palette is optional (defaults to red).
 $coffee-build-warn: mat-palette($mat-red);
 
@@ -34,6 +33,10 @@ $coffee-build-theme: mat-light-theme($coffee-build-primary, $coffee-build-accent
 @include angular-material-theme($coffee-build-theme);
 
 /* You can add global styles to this file, and also import other style files */
+:root{
+  --mat-primary: $mat-brown;
+  --mat-accent: $mat-blue 
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
