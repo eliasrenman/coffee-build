@@ -4,6 +4,10 @@ export class User {
     public displayName: string,
 
     private _token: string,
+    private subscriptions?: [{
+      device: string;
+      id: number;
+    }]
   ) { }
 
   get token() {

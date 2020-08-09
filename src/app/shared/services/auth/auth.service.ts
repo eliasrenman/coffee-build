@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   private handleLogin(res: AuthResponseData) {
-    const user = new User(res.avatar, res.displayName, res.token);
+    const user = new User(res.avatar, res.displayName, res.token, res.subscriptions);
     this.user.next(user);
     localStorage.setItem('auth-user', JSON.stringify(user));
   }
@@ -65,6 +65,7 @@ export class AuthService {
     if (!userData) {
       return;
     }
+    
 
     const loadedUser = new User(
       userData.avatar,
