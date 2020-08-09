@@ -9,7 +9,7 @@ import { LogoComponent } from '../assets/logo/logo.component';
     LogoComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     LogoComponent,

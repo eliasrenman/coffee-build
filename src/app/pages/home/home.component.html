@@ -10,9 +10,10 @@
     </p>
     
     <div class="d-flex justify-content-center">
-        <a routerLink="/dashboard"> 
-          <button  mat-raised-button color="primary">
+        <a [href]="redirectUrl" (click)="preventLinkClick($event)">
+          <button [disabled]="!redirectUrl" mat-raised-button color="primary">
               Sign In With Github
+              <img class="p-2" src="/assets/github.svg" alt="Github icon">
           </button>
         </a>
     </div>

@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { HomeComponent } from './home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }
@@ -18,6 +19,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
+    HttpClientModule,
     MatButtonModule,
     RouterModule.forChild(routes)
   ],
