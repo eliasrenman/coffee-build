@@ -16,7 +16,7 @@ import { Path } from '../../paths';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class GuestGuardService implements CanActivate {
 
 
   constructor(private auth: AuthService, private router: Router) { }
@@ -32,10 +32,11 @@ export class AuthGuardService implements CanActivate {
       map(user => {
         const isAuth = !!user;
         if (isAuth) {
-          return true;
+          return this.router.createUrlTree([Path.LOGGED_IN_ROUTE]);
         }
-        return this.router.createUrlTree([Path.LOGGED_OUT_ROUTE]);
+        return true;
       })
     );
   }
+  
 }

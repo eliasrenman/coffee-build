@@ -39,10 +39,10 @@ export class AuthService {
   loginByCode(returnCode: string) {
     this.http
       .get<AuthResponseData>(Endpoint.GET_AUTH_CALLBACK + returnCode)
-      .subscribe(this.handleLogin.bind(this))
+      .subscribe(this.handleLogin)
   }
 
-  private handleLogin(res: AuthResponseData) {
+  private handleLogin = (res: AuthResponseData) => {
     const user = new User(
       res.data.avatar, 
       res.data.name, 
@@ -50,6 +50,7 @@ export class AuthService {
       res.data.subscriptions);
     this.user.next(user);
     localStorage.setItem('auth-user', JSON.stringify(user));
+    this.router.navigate([Path.LOGGED_IN_ROUTE]);
   }
 
   
