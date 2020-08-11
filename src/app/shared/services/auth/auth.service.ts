@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { User } from './user.model';
+import { Path } from '../../paths';
 
 export interface AuthResponseData {
   data: {
@@ -24,7 +25,6 @@ export interface AuthResponseData {
 export class AuthService {
   public user = new BehaviorSubject<User>(null);
   
-  private logoutRedirectRoute = '/';
 
   constructor(private router: Router,
     private http: HttpClient) { }
@@ -32,14 +32,14 @@ export class AuthService {
   
   logout() {
     this.user.next(null);
-    this.router.navigate([this.logoutRedirectRoute]);
+    this.router.navigate([Path.LOGGED_OUT_ROUTE]);
     this.clearStorage();
   }
 
   loginByCode(returnCode: string) {
     this.http
       .get<AuthResponseData>(Endpoint.GET_AUTH_CALLBACK + returnCode)
-      .subscribe(this.handleLogin)
+      .subscribe(this.handleLogin.bind(this))
   }
 
   private handleLogin(res: AuthResponseData) {
@@ -48,7 +48,6 @@ export class AuthService {
       res.data.name, 
       res.data.token, 
       res.data.subscriptions);
-    console.log(this.user);
     this.user.next(user);
     localStorage.setItem('auth-user', JSON.stringify(user));
   }
@@ -84,7 +83,6 @@ export class AuthService {
       })
 
     if (loadedUser.token) {
-      console.log(loadedUser);
       this.user.next(loadedUser);
     }
   }
