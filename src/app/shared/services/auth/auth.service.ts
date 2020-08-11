@@ -10,6 +10,7 @@ export interface AuthResponseData {
   data: {
     avatar: string;
     name: string;
+    eid: string;
     id: number;
     token: string;
     subscriptions: [{
@@ -45,8 +46,9 @@ export class AuthService {
   private handleLogin = (res: AuthResponseData) => {
     const user = new User(
       res.data.avatar, 
-      res.data.name, 
-      res.data.token, 
+      res.data.name,
+      res.data.eid,
+      res.data.token,
       res.data.subscriptions);
     this.user.next(user);
     localStorage.setItem('auth-user', JSON.stringify(user));
@@ -62,6 +64,7 @@ export class AuthService {
     const userData: {
       avatar: string;
       name: string;
+      eid: string;
       _token: string;
     } = JSON.parse(localStorage.getItem('auth-user'));
     if (!userData) {
@@ -72,6 +75,7 @@ export class AuthService {
     const loadedUser = new User(
       userData.avatar,
       userData.name,
+      userData.eid,
       userData._token,
     );
 

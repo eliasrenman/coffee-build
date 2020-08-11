@@ -2,7 +2,7 @@ export class User {
   constructor(
     public avatar: string,
     public name: string,
-
+    public eid: string,
     private _token: string,
     private _subscriptions?: [Subscription]
   ) { }
@@ -14,6 +14,7 @@ export class User {
   set subscriptions(subscriptions) {
     this._subscriptions = subscriptions;
   }
+
 }
 
 export interface Subscription {
