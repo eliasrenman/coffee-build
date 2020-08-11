@@ -1,19 +1,21 @@
-import { environment } from './../../../../environments/environment';
+import { Endpoint } from './../../api-endpoints';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { User } from './user.model';
 
 export interface AuthResponseData {
-  avatar: string;
-  displayName: string;
-  id: number;
-  token: string;
-  subscriptions: [{
-    device: string;
+  data: {
+    avatar: string;
+    name: string;
     id: number;
-  }]
+    token: string;
+    subscriptions: [{
+      device: string;
+      id: number;
+    }]
+  }
 }
 
 @Injectable({
@@ -22,7 +24,6 @@ export interface AuthResponseData {
 export class AuthService {
   public user = new BehaviorSubject<User>(null);
   
-  private tokenExpirationTimer: any;
   private logoutRedirectRoute = '/';
 
   constructor(private router: Router,
@@ -33,20 +34,21 @@ export class AuthService {
     this.user.next(null);
     this.router.navigate([this.logoutRedirectRoute]);
     this.clearStorage();
-    if (this.tokenExpirationTimer) {
-      clearTimeout(this.tokenExpirationTimer);
-    }
-    this.tokenExpirationTimer = null;
   }
 
   loginByCode(returnCode: string) {
     this.http
-      .get<AuthResponseData>(`${environment.apiEndpoint}/auth/callback?code=${returnCode}`)
+      .get<AuthResponseData>(Endpoint.GET_AUTH_CALLBACK + returnCode)
       .subscribe(this.handleLogin)
   }
 
   private handleLogin(res: AuthResponseData) {
-    const user = new User(res.avatar, res.displayName, res.token, res.subscriptions);
+    const user = new User(
+      res.data.avatar, 
+      res.data.name, 
+      res.data.token, 
+      res.data.subscriptions);
+    console.log(this.user);
     this.user.next(user);
     localStorage.setItem('auth-user', JSON.stringify(user));
   }
@@ -59,7 +61,7 @@ export class AuthService {
   autoLogin() {
     const userData: {
       avatar: string;
-      displayName: string;
+      name: string;
       _token: string;
     } = JSON.parse(localStorage.getItem('auth-user'));
     if (!userData) {
@@ -69,12 +71,29 @@ export class AuthService {
 
     const loadedUser = new User(
       userData.avatar,
-      userData.displayName,
+      userData.name,
       userData._token,
     );
 
+    this.http.get<{
+      data: [Subscription]}
+      >(Endpoint.GET_SUBSCRIPTIONS, {                                                                                                                                                                                 
+        headers: AUTH_HEADER(loadedUser), 
+      }).subscribe(res => {
+        loadedUser.subscriptions = res.data;
+      })
+
     if (loadedUser.token) {
+      console.log(loadedUser);
       this.user.next(loadedUser);
     }
+  }
+}
+
+export function AUTH_HEADER(user) {
+  return {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${user.token}`,
   }
 }

@@ -1,4 +1,5 @@
-import { environment } from './../../../environments/environment';
+import { Path } from './../../shared/paths';
+import { Endpoint } from './../../shared/api-endpoints';
 import { AuthService } from './../../shared/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -21,9 +22,9 @@ export class HomeComponent implements OnInit {
     const loginCode = this.route.snapshot.queryParamMap.get("code");
     if(loginCode) {
       this.authService.loginByCode(loginCode);
-      window.history.pushState({}, document.title, "/");
+      window.history.pushState({}, document.title, Path.HOME);
     } else {
-      this.http.get(`${environment.apiEndpoint}/auth`).subscribe((res: any) => {
+      this.http.get(Endpoint.GET_AUTH_REDIRECT).subscribe((res: any) => {
         this.redirectUrl = res.data;
       })
     }

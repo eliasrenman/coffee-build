@@ -1,3 +1,4 @@
+import { HomeComponent } from './../../../pages/home/home.component';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -10,23 +11,22 @@ import {
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-
+import { Path } from '../../paths';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate, CanDeactivate {
+export class AuthGuardService implements CanActivate, CanDeactivate<HomeComponent> {
 
 
   constructor(private auth: AuthService, private router: Router) { }
+  
 
-  canActivate(
+  public canActivate(
     route: ActivatedRouteSnapshot,
     router: RouterStateSnapshot
-  ): boolean | UrlTree
-    | Promise<boolean | UrlTree>
-    | Observable<boolean | UrlTree> {
-
+  ): any {
+    
     return this.auth.user.pipe(
       take(1),
       map(user => {
@@ -34,24 +34,18 @@ export class AuthGuardService implements CanActivate, CanDeactivate {
         if (isAuth) {
           return true;
         }
-        return this.router.createUrlTree(['/']);
+        return this.router.createUrlTree([Path.LOGGED_OUT_ROUTE]);
       })
     );
   }
 
-  canDeactive(
-    route: ActivatedRouteSnapshot,
-    router: RouterStateSnapshot
-  ): boolean | UrlTree
-    | Promise<boolean | UrlTree>
-    | Observable<boolean | UrlTree> {
-      
+  canDeactivate(component: HomeComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {   
     return this.auth.user.pipe(
       take(1),
       map(user => {
         const isAuth = !!user;
         if (isAuth) {
-          return this.router.createUrlTree(['/']);
+          return this.router.createUrlTree([Path.LOGGED_IN_ROUTE]);
         }
         return true;
       })
