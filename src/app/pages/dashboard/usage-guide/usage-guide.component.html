@@ -5,12 +5,12 @@
   <mat-tab-group>
     <mat-tab label="Windows">
       <app-code-example>
-        powershell -Command "(new-object net.webclient).DownloadString('https://example.com/notify/rZ4pPgYxegCarB3eXbg')"
+        powershell -Command "(new-object net.webclient).DownloadString('{{ notification_endpoint }}')"
       </app-code-example>
     </mat-tab>
     <mat-tab label="Linux & Mac OS">
       <app-code-example>
-        wget https://example.com/notify/rZ4pPgYxegCarB3eXbg
+        wget {{ notification_endpoint }}
       </app-code-example>
     </mat-tab>
   </mat-tab-group>
