@@ -1,3 +1,4 @@
+import { PushService } from './shared/services/push.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './shared/services/auth/auth.service';
 
@@ -19,6 +20,7 @@ import { AuthInterceptorService } from './shared/services/auth/auth-interceptor.
   ],
   providers: [
     AuthService,
+    PushService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

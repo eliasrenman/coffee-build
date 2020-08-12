@@ -13,5 +13,7 @@ export class Endpoint {
   /**
    * A Users EID Is needed at the end of this endpoint
    */
-  public static GET_NOTIFICATION = `${environment.apiEndpoint}/notify/`;
+  public static GET_NOTIFY_USER = `${environment.apiEndpoint}/notify/`;
+
+  public static POST_NOTIFICATION = `${environment.apiEndpoint}/user/subscription`;
 }

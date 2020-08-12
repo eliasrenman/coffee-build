@@ -4,14 +4,14 @@ export class User {
     public name: string,
     public eid: string,
     private _token: string,
-    private _subscriptions?: [Subscription]
+    private _subscriptions?: Subscription[]
   ) { }
 
   get token() {
     return this._token;
   }
 
-  set subscriptions(subscriptions) {
+  set subscriptions(subscriptions: Subscription[]) {
     this._subscriptions = subscriptions;
   }
 

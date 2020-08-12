@@ -2,8 +2,8 @@ import { Endpoint } from './../../api-endpoints';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { User } from './user.model';
+import { BehaviorSubject } from 'rxjs';
+import { User, Subscription } from './user.model';
 import { Path } from '../../paths';
 
 export interface AuthResponseData {
@@ -80,7 +80,7 @@ export class AuthService {
     );
 
     this.http.get<{
-      data: [Subscription]}
+      data: Subscription[]}
       >(Endpoint.GET_SUBSCRIPTIONS, {                                                                                                                                                                                 
         headers: AUTH_HEADER(loadedUser), 
       }).subscribe(res => {

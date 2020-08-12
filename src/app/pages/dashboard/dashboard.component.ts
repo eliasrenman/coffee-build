@@ -1,3 +1,4 @@
+import { PushService } from './../../shared/services/push.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private push: PushService) { }
 
   ngOnInit(): void {
+    this.push.registerDevice();
   }
 
 }

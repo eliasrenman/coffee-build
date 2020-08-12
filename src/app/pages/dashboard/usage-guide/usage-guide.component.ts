@@ -28,6 +28,6 @@ export class UsageGuideComponent implements OnInit, OnDestroy {
   }
 
   get notification_endpoint() {
-    return Endpoint.GET_NOTIFICATION + this.user.eid;
+    return Endpoint.GET_NOTIFY_USER + this.user.eid;
   }
 }

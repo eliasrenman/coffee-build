@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://localhost'
+  apiEndpoint: 'http://localhost',
+  apiVapId: 'BAvy3xYZ2rLScQ7UqzhTc_HkOGcwZ8--apow5P5qIJATuFZzakJXTOLvyCtPpI0qY9NEKkgy_CAnUPeVsUeIuN8'
 };
 
 /*
